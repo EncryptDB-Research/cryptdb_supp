@@ -25,6 +25,7 @@
 
 ##### 4. Downloading and installing required software for CryptDB
 * Download the cryptdb_supp folder from the GitHub page
+	* **git clone https://github.com/EncryptDB-Research/cryptdb_supp**
 * In terminal, navigate to the cryptdb_supp folder
 	* **cd cryptdb_supp**
 * Run the setup.sh file using the command **sudo ./setup.sh**
