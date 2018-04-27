@@ -25,19 +25,21 @@
 
 ##### 4. Downloading and installing required software for CryptDB
 * Download the cryptdb_supp folder from the GitHub page
+	* **git clone https://github.com/scace006/cryptdb_supp**
 * In terminal, navigate to the cryptdb_supp folder
+	* **cd cryptdb_supp**
 * Run the setup.sh file using the command **sudo ./setup.sh**
-	* This will install bison2.7, ruby, git, apache2, php5, and download a copy of cryptdb
-* Navigate back to the cryptdb folder, and run **sudo scripts/install.rb .**
+	* This will install bison, ruby, apache, php, download CryptDB, and replace the install.rb, and wrapper.lua files
+* Navigate back to the CryptDB folder, and run **sudo scripts/install.rb .**
 	* Do not omit the dot at the end of the command
-	* This will install cryptdb
-	* In order for cryptdb to work with its default configurations, MySQL password should be **letmein**
+	* This will install CryptDB
+	* In order for CryptDB to work with its default configurations, MySQL password should be **letmein**
 	
 #### 5. Using cryptdb
-* To run cryptdb, there should be a cdbserver.sh and cdbclient.sh file inside the cryptdb directory
+* To run CryptDB, there should be a cdbserver.sh and cdbclient.sh file inside the cryptdb directory
 	* Run the server file with **./cdbserver.sh** first, then
 	* Run the client file with **./cdbclient.sh** in a seperate window
-* To exit from cryptdb, make sure that all clients disconnect before terminating the server
+* To exit from CryptDB, make sure that all clients disconnect before terminating the server
 	* To disconnect the client, simply enter **quit**
 	* To terminate the server use ctrl-c
 * (Prototype) There is a basic webapp that is able to display information about the databases on the CryptDB system
