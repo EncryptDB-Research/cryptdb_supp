@@ -21,20 +21,20 @@ echo "Bison2.7 installed"
 
 # install ruby #
 echo "installing ruby"
-sudo apt install ruby
+sudo apt install ruby -y
 echo 'ruby installed'
 
 # download cryptdb #
 echo "installing git and cloning cryptdb repository"
 cd ~
-git clone https://github.com/CryptDB/cryptdb
+git clone -b public git://g.csail.mit.edu/cryptdb
 echo "cryptdb cloned to home dir"
 
 # create cdb scripts #
 echo 'creating scripts to run CryptDB client and server'
 cd ~/cryptdb/
 echo $'#!/bin/bash\nmysql -uroot -p -h 127.0.0.1 -P 3307' > cdbclient.sh
-echo $'#!/bin/bash\nexport EDBDIR=/home/user/cryptdb/\n./bins/proxy-bin/bin/mysql-proxy --plugins=proxy --event-threads=4 --max-open-files=1024 --proxy-lua-script=$EDBDIR/mysqlproxy/wrapper.lua --proxy-address=127.0.0.1:3307 --proxy-backend-addresses=localhost:3306' > cdbserver.sh
+echo $'#!/bin/bash\nexport EDBDIR=/home/user/cryptdb\n./bins/proxy-bin/bin/mysql-proxy --plugins=proxy --event-threads=4 --max-open-files=1024 --proxy-lua-script=$EDBDIR/mysqlproxy/wrapper.lua --proxy-address=127.0.0.1:3307 --proxy-backend-addresses=localhost:3306' > cdbserver.sh
 sudo chmod +x cdbclient.sh
 sudo chmod +x cdbserver.sh
 echo "cdb scripts created"
@@ -42,11 +42,18 @@ echo "cdb scripts created"
 
 # install apache and php #
 echo "installing apache and php"
-sudo apt install apache2
-sudo apt install php5
-sudo apt install apache2-utils
-sudo apt install php5-mysql
+sudo apt install apache2 -y
+sudo apt install php5 -y
+sudo apt install apache2-utils -y
+sudo apt install php5-mysql -y
 echo "installed apache and php"
+
+# install python modules for scripts
+sudo apt install python-numpy -y
+sudo apt install python-pandas -y
+sudo apt install python-pip -y
+sudo pip install pymysql
+sudo apt install python-mysqldb -y
 
 # replace files with modified versions
 sudo rm ~/cryptdb/scripts/install.rb
@@ -57,3 +64,7 @@ sudo touch ~/cryptdb/mysqlproxy/freqs
 
 # move webview to apache2 root
 sudo cp -r ~/cryptdb_supp/webview/ /var/www/html/
+
+# install cryptdb system
+cd ~/cryptdb
+sudo scripts/install.rb .
